@@ -2,7 +2,7 @@
 
 ## Installation
 
-    npm install git@github.com:complate/complate-fractal.git
+    npm install https://github.com/complate/complate-fractal
 
 ## Configure Fractal
 

@@ -16,12 +16,12 @@ the adapter:
 // fractal.js
 const complateAdapter = require("complate-fractal")({
   bundlePath: path.join(__dirname, "dist", "bundle.js")
-});
+})
 
 // …
 
-fractal.components.engine(complateAdapter);
-fractal.components.set('ext', '.jsx');
+fractal.components.engine(complateAdapter)
+fractal.components.set('ext', '.jsx')
 ```
 
 ## Things not working yet

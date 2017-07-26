@@ -24,6 +24,7 @@ fractal.components.engine(complateAdapter)
 fractal.components.set('ext', '.jsx')
 ```
 
-## Things not working yet
+## TODO / Things not working yet
 
 * Layouts
+* Prettify HTML output

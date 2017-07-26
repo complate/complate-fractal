@@ -1,0 +1,32 @@
+{
+  "name": "complate-fractal",
+  "version": "0.0.0",
+  "description": "Use complate templates with Fractal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint --cache ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/complate/complate-fractal"
+  },
+  "author": "Robert Glaser <robert.glaser@innoq.com> (https://innoq.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/complate/complate-fractal/issues"
+  },
+  "homepage": "https://github.com/complate/complate-fractal",
+  "dependencies": {
+    "@frctl/fractal": "^1.0.0",
+    "babel-core": "^6.25.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "purdy": "^2.2.1"
+  }
+}

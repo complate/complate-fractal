@@ -14,8 +14,8 @@ the adapter:
 
 ```javascript
 // fractal.js
-const complateAdapter = require("complate-fractal")({
-  bundlePath: path.join(__dirname, "dist", "bundle.js")
+const complateAdapter = require('complate-fractal')({
+  bundlePath: path.join(__dirname, 'dist', 'bundle.js')
 })
 
 // …

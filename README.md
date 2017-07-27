@@ -24,7 +24,37 @@ fractal.components.engine(complateAdapter)
 fractal.components.set('ext', '.jsx')
 ```
 
-## TODO / Things not working yet
+## Usage with Fractal
 
-* Layouts
-* Prettify HTML output
+### Context
+
+You need to reference context values via the `context` object:
+
+```jsx
+<my-component>{context.my_label}</my-component>
+```
+
+### Referencing components
+
+Fractal (with Handlebars) brings support for including existing components within others:
+
+```handlebars
+<div class="my-component">
+  {{> @my_other_component }}
+</div>
+```
+
+complate has its own way for doing that by using HTML-expansion without any
+special markers or syntax you have to remember:
+
+```jsx
+<my-component>
+  <my-other-component />
+</my-component>
+```
+
+Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
+
+## Examples
+
+- [innoQ Styleguide and Component Library](https://github.com/innoq/innoq-styleguide)

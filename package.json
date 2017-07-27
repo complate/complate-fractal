@@ -1,6 +1,6 @@
 {
   "name": "complate-fractal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Use complate templates with Fractal.",
   "main": "index.js",
   "scripts": {

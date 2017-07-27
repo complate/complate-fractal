@@ -4,7 +4,9 @@
 
 ## Installation
 
-    npm install https://github.com/complate/complate-fractal
+Add complate-fractal to your Fractal-based styleguide project:
+
+    npm install complate-fractal
 
 ## Configure Fractal
 

@@ -1,4 +1,4 @@
-# Complate Adapter for Fractal
+# complate Adapter for Fractal
 
 ## Installation
 

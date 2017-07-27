@@ -1,7 +1,8 @@
 const babel = require('babel-core')
 const Adapter = require('@frctl/fractal').Adapter
 const PseudoStream = require('./src/pseudo-stream')
-// const Purdy = require('purdy')
+const html = require('html')
+// const p = require('purdy')
 
 const babelConfig = {
   plugins: [
@@ -30,7 +31,7 @@ class ComplateAdapter extends Adapter {
       const fn = eval(compiledString) // eslint-disable-line no-eval
       const s = new PseudoStream()
       fn(s)
-      resolve(s.read())
+      resolve(html.prettyPrint(s.read()))
     })
   }
 }

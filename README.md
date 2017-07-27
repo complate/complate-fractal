@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/complate/complate-fractal.svg?branch=master)](https://travis-ci.org/complate/complate-fractal)
+
 # complate Adapter for Fractal
 
 ## Installation

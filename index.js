@@ -15,6 +15,7 @@ class ComplateAdapter extends Adapter {
     super(null, source)
     this._app = app
     this._config = config
+    // this._handlePrefix = '$'
   }
 
   render (path, str, context, meta) {

@@ -62,3 +62,7 @@ Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
 ## Examples
 
 - [innoQ Styleguide and Component Library](https://github.com/innoq/innoq-styleguide)
+
+## To do
+
+- Implement  `path` helper for Fractal components

@@ -1,8 +1,9 @@
 const babel = require('babel-core')
-const Adapter = require('@frctl/fractal').Adapter
+const fractal = require('@frctl/fractal')
+const Adapter = fractal.Adapter
+const utils = fractal.utils
 const PseudoStream = require('./src/pseudo-stream')
 const html = require('html')
-// const p = require('purdy')
 
 const babelConfig = {
   plugins: [
@@ -21,17 +22,18 @@ class ComplateAdapter extends Adapter {
   render (path, str, context, meta) {
     // let views = {}
     // this.views.forEach(view => (views[view.handle] = view.content))
-    return Promise.resolve(this.compile(str, context, { _self: meta.self }))
+    return Promise.resolve(this.compile(str, context, meta))
   }
 
   renderLayout (path, str, context, meta) {
     const replacedString = str.replace('###yield###', context.yield)
-    return Promise.resolve(this.compile(replacedString, context, { _self: meta.self, _target: meta.target }))
+    return Promise.resolve(this.compile(replacedString, context, meta))
   }
 
-  compile (input, context, { _self, _target }) {
+  compile (input, context, { _self, _target, env }) {
     return new Promise((resolve, reject) => {
       const _config = this._app._config // eslint-disable-line no-unused-vars
+      const path = this.path(env).bind(this) // eslint-disable-line no-unused-vars
       const createElement = require(this._config.bundlePath) // eslint-disable-line no-unused-vars
       const compiledString = babel.transform(input, babelConfig).code
       const fn = eval(compiledString) // eslint-disable-line no-eval
@@ -39,6 +41,20 @@ class ComplateAdapter extends Adapter {
       fn(s)
       resolve(html.prettyPrint(s.read()))
     })
+  }
+
+  path (env) {
+    return function (pathStr) {
+      const request = env.request
+
+      if (!env || env.server) {
+        return pathStr
+      } else if (request && request.path) {
+        return utils.relUrlPath(pathStr, request.path, this._app.web.get('builder.urls'))
+      } else {
+        return utils.relUrlPath(pathStr, '/', this._app.web.get('builder.urls'))
+      }
+    }
   }
 }
 

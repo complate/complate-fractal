@@ -2,7 +2,7 @@ const babel = require('babel-core')
 const fractal = require('@frctl/fractal')
 const Adapter = fractal.Adapter
 const utils = fractal.utils
-const PseudoStream = require('./src/pseudo-stream')
+const PseudoStream = require('./pseudo-stream')
 const html = require('html')
 
 const babelConfig = {

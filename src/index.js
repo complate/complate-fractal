@@ -20,8 +20,6 @@ class ComplateAdapter extends Adapter {
   }
 
   render (path, str, context, meta) {
-    // let views = {}
-    // this.views.forEach(view => (views[view.handle] = view.content))
     return Promise.resolve(this.compile(str, context, meta))
   }
 

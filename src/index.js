@@ -23,11 +23,6 @@ class ComplateAdapter extends Adapter {
     return Promise.resolve(this.compile(str, context, meta))
   }
 
-  renderLayout (path, str, context, meta) {
-    const replacedString = str.replace('###yield###', context.yield)
-    return Promise.resolve(this.compile(replacedString, context, meta))
-  }
-
   compile (input, context, { _self, target, env }) {
     return new Promise((resolve, reject) => {
       const _config = this._app._config // eslint-disable-line no-unused-vars
@@ -37,7 +32,7 @@ class ComplateAdapter extends Adapter {
       const fn = eval(js) // eslint-disable-line no-eval
       const s = new PseudoStream(target && '<!DOCTYPE html>')
       fn(s)
-      resolve(html.prettyPrint(s.read()))
+      resolve(html.prettyPrint(s.read()).replace('###yield###', context.yield))
     })
   }
 

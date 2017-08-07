@@ -33,8 +33,8 @@ class ComplateAdapter extends Adapter {
       const _config = this._app._config // eslint-disable-line no-unused-vars
       const path = this.path(env).bind(this) // eslint-disable-line no-unused-vars
       const createElement = require(this._config.bundlePath) // eslint-disable-line no-unused-vars
-      const compiledString = babel.transform(input, babelConfig).code
-      const fn = eval(compiledString) // eslint-disable-line no-eval
+      let js = babel.transform(input, babelConfig).code
+      const fn = eval(js) // eslint-disable-line no-eval
       const s = new PseudoStream(target && '<!DOCTYPE html>')
       fn(s)
       resolve(html.prettyPrint(s.read()))

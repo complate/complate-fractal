@@ -20,7 +20,7 @@
     "@frctl/fractal": "^1.1.5",
     "babel-core": "^6.25.0",
     "complate-stream": "^0.10.0",
-    "faucet-pipeline-jsx": "^0.9.1",
+    "faucet-pipeline-jsx": "^0.10.0",
     "html": "^1.0.0"
   },
   "devDependencies": {

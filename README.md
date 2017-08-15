@@ -62,3 +62,12 @@ Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
 ## Examples
 
 - [innoQ Styleguide and Component Library](https://github.com/innoq/innoq-styleguide)
+
+## Development
+
+### Release
+
+1. Increment version number in `package.json`
+2. Commit
+3. `git tag -am "vX.X.X" X.X.X`
+4. `git push --follow-tags`

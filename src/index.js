@@ -31,8 +31,9 @@ class ComplateAdapter extends Adapter {
       let js = babel.transform(input, babelConfig).code
       const fn = eval(js) // eslint-disable-line no-eval
       const s = new PseudoStream(target && '<!DOCTYPE html>')
-      fn(s)
-      resolve(html.prettyPrint(s.read()).replace('###yield###', context.yield))
+      fn(s, true, () => {
+        resolve(html.prettyPrint(s.read()).replace('###yield###', context.yield))
+      })
     })
   }
 

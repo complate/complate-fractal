@@ -32,7 +32,10 @@ class ComplateAdapter extends Adapter {
       const { code } = babel.transform(input, babelConfig)
       const render = eval(code) // eslint-disable-line no-eval
 
-      const stream = new PseudoStream(target && '<!DOCTYPE html>')
+      const stream = new PseudoStream()
+      if (target) { // indicates that we're rendering a document rather than a fragment
+        stream.writeln('<!DOCTYPE html>')
+      }
 
       render(stream, true, () => {
         resolve(html.prettyPrint(stream.read()).replace('###yield###', context.yield))

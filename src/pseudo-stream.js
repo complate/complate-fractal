@@ -1,9 +1,6 @@
 class PseudoStream {
-  constructor (doctype) {
+  constructor () {
     this._buffer = []
-    if (doctype) {
-      this._buffer.push(doctype)
-    }
   }
 
   read () {

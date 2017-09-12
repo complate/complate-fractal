@@ -1,7 +1,5 @@
 const babel = require('babel-core')
-const fractal = require('@frctl/fractal')
-const Adapter = fractal.Adapter
-const utils = fractal.utils
+const { Adapter, utils } = require('@frctl/fractal')
 const PseudoStream = require('./pseudo-stream')
 const html = require('html')
 
@@ -26,7 +24,7 @@ class ComplateAdapter extends Adapter {
   compile (input, context, { _self, target, env }) {
     return new Promise((resolve, reject) => {
       const _config = this._app._config // eslint-disable-line no-unused-vars
-      const path = this.path(env).bind(this) // eslint-disable-line no-unused-vars
+      const path = this.pathGenerator(env) // eslint-disable-line no-unused-vars
       const createElement = require(this._config.bundlePath) // eslint-disable-line no-unused-vars
 
       const { code } = babel.transform(input, babelConfig)
@@ -43,17 +41,15 @@ class ComplateAdapter extends Adapter {
     })
   }
 
-  path (env) {
-    return function (pathStr) {
-      const request = env.request
-
+  pathGenerator (env) {
+    return pathStr => {
       if (!env || env.server) {
         return pathStr
-      } else if (request && request.path) {
-        return utils.relUrlPath(pathStr, request.path, this._app.web.get('builder.urls'))
-      } else {
-        return utils.relUrlPath(pathStr, '/', this._app.web.get('builder.urls'))
       }
+
+      const { request } = env
+      const uri = request && request.path || '/'
+      return utils.relUrlPath(pathStr, uri, this._app.web.get('builder.urls'))
     }
   }
 }

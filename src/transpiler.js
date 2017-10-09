@@ -35,7 +35,7 @@ module.exports = (jsx, { previewPath, rootDir, componentsDir }) => {
     split: false
   })
 
-  imports.push("import renderer, { createElement } from 'complate-stream'")
+  imports.push("import Renderer, { createElement } from 'complate-stream'")
   if (previewPath) {
     imports.push(`import PreviewLayout from '${previewPath}'`)
   }
@@ -47,11 +47,11 @@ module.exports = (jsx, { previewPath, rootDir, componentsDir }) => {
   code = `const generateMacro = context => { return () => ${code} }`
   // generate render function -- XXX: hard-coded doctype
   code = `${code}
-const { renderView } = renderer('<!DOCTYPE html>')
+const renderer = new Renderer('<!DOCTYPE html>')
 const fragment = ${!previewPath}
 export default (stream, context, callback) => {
   const wrapperMacro = generateMacro(context)
-  renderView(wrapperMacro, {}, stream, fragment, callback)
+  renderer.renderView(wrapperMacro, {}, stream, { fragment }, callback)
 }`
   code = imports.concat(code).join('\n')
 

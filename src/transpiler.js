@@ -9,9 +9,10 @@ require('babel-register')({
     ['transform-react-jsx', { pragma: 'createElement' }]
   ]
 })
-// activate support for ES6 import/export (required for complate-stream; `require`ing it here
-// makes it work within the generated JSX module below, probably due to Node's module caching)
+// activate support for ES6 import/export syntax (required for non-JSX ES6 modules, notably complate-stream)
 require = require('@std/esm')(module, { esm: 'all', cjs: true }) // eslint-disable-line no-global-assign
+// `require`ing non-JSX ES6 modules here makes `import`s work within JSX modules, because here we have access to
+// @std/esm's `require` and can thus prepopulate Node's module cache appropriately
 require('complate-stream')
 
 module.exports = (jsx, { previewPath, rootDir, componentsDir }) => {

@@ -15,7 +15,7 @@ require = require('@std/esm')(module, { esm: 'all', cjs: true }) // eslint-disab
 // @std/esm's `require` and can thus prepopulate Node's module cache appropriately
 require('complate-stream')
 
-module.exports = (jsx, { previewPath, rootDir, componentsDir }) => {
+module.exports = (jsx, { rootDir, previewPath }) => {
   // separate imports from markup snippet -- XXX: brittle, but good enough?
   const { imports, xml } = jsx.split(/\r\n|\r|\n/).reduce((memo, line) => {
     line = line.trim()

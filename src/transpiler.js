@@ -38,6 +38,10 @@ module.exports = (jsx, { previewPath, rootDir, componentsDir }) => {
 
   imports.push("import Renderer, { createElement } from 'complate-stream'")
   if (previewPath) {
+    // avoid accidental string escaping due to Windows-style path separators
+    if (path.sep === '\\') {
+      previewPath = previewPath.replace(/\\/g, '/')
+    }
     imports.push(`import PreviewLayout from '${previewPath}'`)
   }
   // generate macro -- XXX: brittle, but good enough?

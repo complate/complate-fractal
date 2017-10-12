@@ -68,6 +68,6 @@ Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
 ### Release
 
 1. Increment version number in `package.json`
-2. Commit
+2. Commit as "vX.X.X"
 3. `git tag -am "vX.X.X" X.X.X`
 4. `git push --follow-tags`

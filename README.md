@@ -8,24 +8,30 @@ Add complate-fractal to your Fractal-based styleguide project:
 
     npm install complate-fractal
 
+or
+
+    yarn add complate-fractal
+
 ## Configure Fractal
-
-In your Fractal project you must first set up transpiling of your complate
-template macros. One way to do this is by using [faucet](https://github.com/faucet-pipeline/faucet-pipeline-js).
-
-The path to the transpiled bundle of complate macros then needs to be passed into
-the adapter:
 
 ```javascript
 // fractal.js
-const complateAdapter = require('complate-fractal')({
-  bundlePath: path.join(__dirname, 'dist', 'bundle.js')
-})
+//
+// Require the complate adapter for Fractal and configure it
+const complate = require('complate-fractal')
+const componentsDir = path.join(__dirname, 'components')
 
-// …
-
-fractal.components.engine(complateAdapter)
-fractal.components.set('ext', '.jsx')
+fractal.components.set('ext', '.html')
+fractal.components.engine(complate({
+  rootDir: __dirname,
+  // envPath: path.resolve(componentsDir, 'env.js'),
+  // previewPath: path.resolve(componentsDir, '_preview.jsx'),
+  generateURI: function (uri) { // Don't use () to avoid this binding
+    return this.assetPath(uri)
+  }
+}))
+fractal.components.set('path', componentsDir)
+fractal.components.set('ext', '.html')
 ```
 
 ## Usage with Fractal

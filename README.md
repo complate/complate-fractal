@@ -12,26 +12,70 @@ or
 
     yarn add complate-fractal
 
-## Configure Fractal
+## Configuring Fractal
+
+In your project's `fractal.js`, you need to register complate as templating engine:
 
 ```javascript
-// fractal.js
-//
-// Require the complate adapter for Fractal and configure it
-const complate = require('complate-fractal')
-const componentsDir = path.join(__dirname, 'components')
+let fractal = module.exports = require('@frctl/fractal').create()
+let complate = require('complate-fractal')
 
-fractal.components.set('ext', '.html')
+…
+
 fractal.components.engine(complate({
   rootDir: __dirname,
-  // envPath: path.resolve(componentsDir, 'env.js'),
-  // previewPath: path.resolve(componentsDir, '_preview.jsx'),
-  generateURI: function (uri) { // Don't use () to avoid this binding
+  generateURI: function(uri) {
+    // NB: invocation context is `{ assetPath }`, providing access to
+    //     Fractal-specific URI generation
     return this.assetPath(uri)
   }
-}))
-fractal.components.set('path', componentsDir)
-fractal.components.set('ext', '.html')
+}));
+```
+
+`rootDir` specifies which directory component samples' import paths are relative to:
+
+```jsx
+import MyWidget from './components/my-widget'
+
+<MyWidget …>
+```
+
+`generateURI` implements an application-specific URI helper, provided to
+components via the application context (via `envPath`, defaults to `env.js`):
+
+```javascript
+// application-specific context; this will be populated (i.e. mutated) at
+// runtime by the respective application
+exports.context = {
+  uri: function toBeDefined() {
+    throw new Error("application context is not defined");
+  }
+};
+```
+
+```jsx
+import { context } from '../env'
+
+export default function MyWidget (params, ...children) {
+  let uri = context.uri('/path/to/resource')
+  …
+}
+```
+
+In addition, you need to provide a `PreviewLayout` component (via `previewPath`,
+which defaults to `_preview.jsx` within the components directory):
+
+```jsx
+export default function PreviewLayout({ context }, ...children) {
+  return <html lang="en">
+    …
+    <body>
+      …
+      {children}
+      …
+    </body>
+  </html>;
+}
 ```
 
 ## Usage with Fractal
@@ -41,12 +85,13 @@ fractal.components.set('ext', '.html')
 You need to reference context values via the `context` object:
 
 ```jsx
-<my-component>{context.my_label}</my-component>
+<MyWidget>{context.my_label}</MyWidget>
 ```
 
 ### Referencing components
 
-Fractal (with Handlebars) brings support for including existing components within others:
+Fractal (with Handlebars) brings support for including existing components
+within others:
 
 ```handlebars
 <div class="my-component">
@@ -54,13 +99,13 @@ Fractal (with Handlebars) brings support for including existing components withi
 </div>
 ```
 
-complate has its own way for doing that by using HTML-expansion without any
+complate has its own way for doing that by using HTML expansion without any
 special markers or syntax you have to remember:
 
 ```jsx
-<my-component>
-  <my-other-component />
-</my-component>
+<MyComponent>
+  <MyOtherComponent />
+</MyComponent>
 ```
 
 Therefore we don’t support Fractal's `@`-prefixed view handlers for now.

@@ -49,7 +49,17 @@ module.exports = (jsx, { rootDir, previewPath }) => {
   if (previewPath) {
     code = `<PreviewLayout context={context}>${code}</PreviewLayout>`
   }
-  code = `const generateMacro = context => { return () => ${code} }`
+  code = `
+function ValidationWrapper(_, ...children) {
+  if(children.length > 1) {
+    throw new Error("snippets must have exactly one root element")
+  }
+  return children[0]
+}
+
+const generateMacro = context => {
+  return () => <ValidationWrapper>${code}</ValidationWrapper>
+}`
   // generate render function -- XXX: hard-coded doctype
   code = `${code}
 const renderer = new Renderer('<!DOCTYPE html>')

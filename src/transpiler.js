@@ -18,8 +18,7 @@ require('complate-stream')
 module.exports = (jsx, { rootDir, previewPath }) => {
   // separate imports from markup snippet -- XXX: brittle, but good enough?
   const { imports, xml } = jsx.split(/\r\n|\r|\n/).reduce((memo, line) => {
-    line = line.trim()
-    if (!line) { // ignore blank lines
+    if (!line.trim()) { // ignore blank lines
       return memo
     }
 

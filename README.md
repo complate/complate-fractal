@@ -2,6 +2,8 @@
 
 # complate Adapter for Fractal
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/complate/complate-fractal.svg)](https://greenkeeper.io/)
+
 ## Installation
 
 Add complate-fractal to your Fractal-based styleguide project:

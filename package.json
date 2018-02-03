@@ -18,11 +18,11 @@
   "homepage": "https://github.com/complate/complate-fractal",
   "dependencies": {
     "@frctl/fractal": "^1.1.7",
-    "@std/esm": "0.11.0",
+    "@std/esm": "0.20.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
-    "complate-stream": "^0.14.2",
+    "complate-stream": "^0.15.0",
     "html": "^1.0.0"
   },
   "devDependencies": {

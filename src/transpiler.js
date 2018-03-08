@@ -61,11 +61,11 @@ const generateMacro = context => {
 }`
   // generate render function -- XXX: hard-coded doctype
   code = `${code}
-const renderer = new Renderer('<!DOCTYPE html>')
+const { renderView } = new Renderer()
 const fragment = ${!previewPath}
 export default (stream, context, callback) => {
   const wrapperMacro = generateMacro(context)
-  renderer.renderView(wrapperMacro, {}, stream, { fragment }, callback)
+  renderView(wrapperMacro, {}, stream, { fragment }, callback)
 }`
   code = imports.concat(code).join('\n')
 

@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.org/complate/complate-fractal.svg?branch=master)](https://travis-ci.org/complate/complate-fractal)
-
 # complate Adapter for Fractal
 
+[![Build Status](https://travis-ci.org/complate/complate-fractal.svg?branch=master)](https://travis-ci.org/complate/complate-fractal)
 [![Greenkeeper badge](https://badges.greenkeeper.io/complate/complate-fractal.svg)](https://greenkeeper.io/)
 
 ## Installation

@@ -34,12 +34,17 @@ class ComplateAdapter extends Adapter {
     })
 
     const stream = new PseudoStream()
-    return new Promise(resolve => {
-      render(stream, context, () => {
-        let html = stream.read()
-        html = prettyPrint(html)
-        resolve(html)
-      })
+    return new Promise((resolve, reject) => {
+      try {
+        render(stream, context, () => {
+          let html = stream.read()
+          html = prettyPrint(html)
+          resolve(html)
+        })
+      } catch(err) {
+        err = new Error(`<pre>${err.toString()}\n${err.stack}</pre>`);
+        reject(err);
+      }
     })
   }
 

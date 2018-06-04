@@ -41,9 +41,9 @@ class ComplateAdapter extends Adapter {
           html = prettyPrint(html)
           resolve(html)
         })
-      } catch(err) {
-        err = new Error(`<pre>${err.toString()}\n${err.stack}</pre>`);
-        reject(err);
+      } catch (err) {
+        const error = new Error(`<pre>${err.toString()}\n${err.stack}</pre>`)
+        reject(error)
       }
     })
   }

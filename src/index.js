@@ -1,4 +1,4 @@
-const BufferedStream = require('complate-stream/src/buffered-stream')
+const BufferedStream = require('./buffered-stream')
 const generateView = require('./transpiler')
 const { Adapter, utils } = require('@frctl/fractal')
 const { prettyPrint } = require('html')

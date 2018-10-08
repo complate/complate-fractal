@@ -1,4 +1,4 @@
-const PseudoStream = require('./pseudo-stream')
+const BufferedStream = require('complate-stream/src/buffered-stream')
 const generateView = require('./transpiler')
 const { Adapter, utils } = require('@frctl/fractal')
 const { prettyPrint } = require('html')
@@ -33,7 +33,7 @@ class ComplateAdapter extends Adapter {
       previewPath: preview && this.previewPath
     })
 
-    const stream = new PseudoStream()
+    const stream = new BufferedStream()
     return new Promise((resolve, reject) => {
       try {
         render(stream, context, () => {

@@ -35,7 +35,7 @@ module.exports = (jsx, { rootDir, previewPath }) => {
     split: false
   })
 
-  imports.push("import Renderer, { createElement } from 'complate-stream'")
+  imports.push("import Renderer, { Fragment, createElement } from 'complate-stream'")
   if (previewPath) {
     // avoid accidental string escaping due to Windows-style path separators
     if (path.sep === '\\') {
@@ -49,15 +49,8 @@ module.exports = (jsx, { rootDir, previewPath }) => {
     code = `<PreviewLayout context={context}>${code}</PreviewLayout>`
   }
   code = `
-function ValidationWrapper(_, ...children) {
-  if(children.length > 1) {
-    throw new Error("snippets must have exactly one root element")
-  }
-  return children[0]
-}
-
 const generateMacro = context => {
-  return () => <ValidationWrapper>${code}</ValidationWrapper>
+  return () => <Fragment>${code}</Fragment>
 }`
   // generate render function -- XXX: hard-coded doctype
   code = `${code}

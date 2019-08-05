@@ -1,7 +1,7 @@
 const BufferedStream = require('./buffered-stream')
 const generateView = require('./transpiler')
 const { Adapter, utils } = require('@frctl/fractal')
-const { prettyPrint } = require('html')
+const prettier = require('prettier')
 const path = require('path')
 
 class ComplateAdapter extends Adapter {
@@ -38,7 +38,7 @@ class ComplateAdapter extends Adapter {
       try {
         render(stream, context, () => {
           let html = stream.read()
-          html = prettyPrint(html)
+          html = prettier.format(html, { parser: 'html' })
           resolve(html)
         })
       } catch (err) {

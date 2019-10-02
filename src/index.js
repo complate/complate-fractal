@@ -28,10 +28,14 @@ class ComplateAdapter extends Adapter {
     context.app = env.context
 
     const preview = meta.env.request.route.handle === 'preview' // XXX: brittle?
-    const render = generateView(str, {
-      rootDir: this._rootDir,
-      previewPath: preview && this.previewPath
-    })
+    try { // eslint-disable-next-line no-var
+      var render = generateView(str, {
+        rootDir: this._rootDir,
+        previewPath: preview && this.previewPath
+      })
+    } catch (err) {
+      return Promise.reject(generateError(err))
+    }
 
     const stream = new BufferedStream()
     return new Promise((resolve, reject) => {
@@ -42,8 +46,7 @@ class ComplateAdapter extends Adapter {
           resolve(html)
         })
       } catch (err) {
-        const error = new Error(`<pre>${err.toString()}\n${err.stack}</pre>`)
-        reject(error)
+        reject(generateError(err))
       }
     })
   }
@@ -89,4 +92,8 @@ module.exports = function (config = {}) {
       return new ComplateAdapter(source, app, config)
     }
   }
+}
+
+function generateError (err) {
+  return new Error(`<pre>${err.toString()}\n${err.stack}</pre>`)
 }

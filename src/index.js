@@ -95,5 +95,8 @@ module.exports = function (config = {}) {
 }
 
 function generateError (err) {
-  return new Error(`<pre>${err.toString()}\n${err.stack}</pre>`)
+  const prep = obj => obj.toString()
+    .replace(/\033\[\d+m/g, '') // strip ANSI color codes
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') // HTML-encoding
+  return new Error(`<pre>${prep(err)}\n----\n${prep(err.stack)}</pre>`)
 }

@@ -2,11 +2,11 @@ const fs = require('fs')
 const path = require('path')
 
 // activate JSX support -- NB: this must be done before @std/esm
-require('babel-register')({
+require('@babel/register')({
   extensions: ['.jsx'],
-  presets: ['es2015'],
+  presets: ['@babel/preset-env'],
   plugins: [
-    ['transform-react-jsx', { pragma: 'createElement' }]
+    ['@babel/plugin-transform-react-jsx', { pragma: 'createElement' }]
   ]
 })
 // activate support for ES6 import/export syntax (required for non-JSX ES6 modules, notably complate-stream)

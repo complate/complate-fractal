@@ -6,7 +6,10 @@ require('@babel/register')({
   extensions: ['.jsx'],
   presets: ['@babel/preset-env'],
   plugins: [
-    ['@babel/plugin-transform-react-jsx', { pragma: 'createElement' }]
+    ['@babel/plugin-transform-react-jsx', {
+      pragma: 'createElement',
+      pragmaFrag: 'Fragment'
+    }]
   ]
 })
 // activate support for ES6 import/export syntax (required for non-JSX ES6 modules, notably complate-stream)

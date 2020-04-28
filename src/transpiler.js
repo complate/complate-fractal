@@ -4,6 +4,7 @@ const path = require('path')
 // activate JSX support -- NB: this must be done before @std/esm
 require('@babel/register')({
   extensions: ['.jsx'],
+  ignore: [], // activates transpilation for third-party modules
   presets: ['@babel/preset-env'],
   plugins: [
     ['@babel/plugin-transform-react-jsx', {

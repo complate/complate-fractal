@@ -10,7 +10,8 @@ require('@babel/register')({
       pragma: 'createElement',
       pragmaFrag: 'Fragment'
     }]
-  ]
+  ],
+  ignore: [] // Macros from dependencies might need to be loaded
 })
 // activate support for ES6 import/export syntax (required for non-JSX ES6 modules, notably complate-stream)
 require = require('esm')(module) // eslint-disable-line no-global-assign

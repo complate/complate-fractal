@@ -18,7 +18,7 @@
   "homepage": "https://github.com/complate/complate-fractal",
   "dependencies": {
     "@babel/core": "~7.10.1",
-    "@babel/plugin-transform-react-jsx": "~7.9.4",
+    "@babel/plugin-transform-react-jsx": "~7.10.1",
     "@babel/preset-env": "~7.9.0",
     "@babel/register": "~7.9.0",
     "@frctl/fractal": "^1.2.1",

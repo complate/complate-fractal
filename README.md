@@ -15,7 +15,7 @@ or
 
 ## Configuring Fractal
 
-In your project's `fractal.js`, you need to register complate as templating engine:
+In your project's `fractal.config.js`, you need to register complate as templating engine:
 
 ```javascript
 let fractal = module.exports = require('@frctl/fractal').create()

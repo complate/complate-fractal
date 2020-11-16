@@ -1,6 +1,5 @@
 language: node_js
-node_js:
-  "8"
+node_js: lts/*
 deploy:
   provider: npm
   email: mail@robert-glaser.de

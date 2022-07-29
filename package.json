@@ -1,6 +1,6 @@
 {
   "name": "complate-fractal",
-  "version": "0.15.0",
+  "version": "1.0.0",
   "description": "Use complate templates with Fractal.",
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "@babel/plugin-transform-react-jsx": "~7.18.6",
     "@babel/preset-env": "~7.18.9",
     "@babel/register": "~7.18.9",
-    "fractal-fork": "^0.0.3",
+    "fractal-fork": "^0.0.4",
     "complate-stream": "^0.16.10",
     "esm": "^3.2.25",
     "prettier": "^2.7.1"

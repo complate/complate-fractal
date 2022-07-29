@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/complate/complate-fractal.svg?branch=master)](https://travis-ci.org/complate/complate-fractal)
 [![Greenkeeper badge](https://badges.greenkeeper.io/complate/complate-fractal.svg)](https://greenkeeper.io/)
 
+**Note:** Because of the security vulnerabilities in the [official fractal branch],
+complate-fractal now uses [this fork](https://github.com/joyheron/fractal).
+
 ## Installation
 
 Add complate-fractal to your Fractal-based styleguide project:
@@ -18,7 +21,7 @@ or
 In your project's `fractal.config.js`, you need to register complate as templating engine:
 
 ```javascript
-let fractal = module.exports = require('@frctl/fractal').create()
+let fractal = module.exports = require('fractal-fork').fractal.create()
 let complate = require('complate-fractal')
 
 …
@@ -123,3 +126,5 @@ Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
 2. Commit as "vX.X.X"
 3. `git tag -am "vX.X.X" "X.X.X"`
 4. `git push --follow-tags`
+
+[official fractal branch]: https://github.com/frctl/fractal

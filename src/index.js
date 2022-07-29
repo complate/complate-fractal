@@ -1,6 +1,6 @@
 const BufferedStream = require('./buffered-stream')
 const generateView = require('./transpiler')
-const { Adapter, utils } = require('@frctl/fractal')
+const { Adapter, utils } = require('fractal-fork').fractal
 const prettier = require('prettier')
 const path = require('path')
 

@@ -126,5 +126,6 @@ Therefore we don’t support Fractal's `@`-prefixed view handlers for now.
 2. Commit as "vX.X.X"
 3. `git tag -am "vX.X.X" "vX.X.X"`
 4. `git push --follow-tags`
+4. `npm publish`
 
 [official fractal branch]: https://github.com/frctl/fractal
